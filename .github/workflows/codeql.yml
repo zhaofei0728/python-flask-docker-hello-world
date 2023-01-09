@@ -39,6 +39,15 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
+    - name: Cache
+      id: cache-python
+      uses: actions/cache@v3.2.3
+      env:
+        cache-name: python-cache-test
+      with:
+        path: /usr/lib/python3/dist-packages
+        key: ${{runner.os}}-build=${{env.cache-name}}
+
     - name: Checkout repository
       uses: actions/checkout@v3
 
